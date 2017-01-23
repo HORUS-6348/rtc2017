@@ -10,7 +10,7 @@ import org.usfirst.frc.team6348.robot.Robot;
 public class ParoEmergencia extends Command {
 	public ParoEmergencia() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.exampleSubsystem);
+		requires(Robot.trenMotriz);
 	}
 
 	// Called just before this Command runs the first time
@@ -21,6 +21,7 @@ public class ParoEmergencia extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		Robot.trenMotriz.parar();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -38,5 +39,6 @@ public class ParoEmergencia extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		Robot.trenMotriz.parar();
 	}
 }
