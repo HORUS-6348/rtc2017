@@ -16,7 +16,7 @@ public class RobotMap {
 	public	static Jaguar motorL;
 	public	static Victor motorR1;
 	public	static Victor motorL1;
-	public static Victor motor1;
+	public  static Victor motor1;
 	public  static Victor motor2;
 	public 	static Jaguar motor3; 
 	public  static DigitalInput limit1;
