@@ -1,7 +1,5 @@
 package org.usfirst.frc.team6348.robot.subsystems;
 
-package org.usfirst.frc.team6348.robot.subsystems;
-
 import org.usfirst.frc.team6348.robot.Robot;
 import org.usfirst.frc.team6348.robot.RobotMap;
 import edu.wpi.first.wpilibj.Spark;
