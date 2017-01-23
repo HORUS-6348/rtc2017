@@ -10,7 +10,7 @@ import org.usfirst.frc.team6348.robot.Robot;
 public class ParoEmergencia extends Command {
 	public ParoEmergencia() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.trenMotriz);
+		requires(Robot.TrenMotriz);
 	}
 
 	// Called just before this Command runs the first time
