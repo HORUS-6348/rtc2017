@@ -91,6 +91,8 @@ public class TrenMotriz extends Subsystem {
 		
 		motor_sup_izq.set(potencia_izq);
 		motor_sup_der.set(potencia_der);
+		
+		//Feliz cumpleaños fish...!!!
 	}
 }
 
