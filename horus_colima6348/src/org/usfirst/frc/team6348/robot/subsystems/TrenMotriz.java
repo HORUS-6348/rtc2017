@@ -28,13 +28,13 @@ public class TrenMotriz extends Subsystem {
 	}
 	
 	private double getMotorIzq(double degrees, double gatillo){
-		if(degrees < 90){
+		if(degrees <= 90){
 			return 1 * gatillo;
-		} else if(degrees < 180){
+		} else if(degrees <= 180){
 			return smoothBetween(90, 180, degrees) * gatillo;
-		} else if(degrees < 270){
+		} else if(degrees <= 270){
 			return -1 * gatillo;
-		} else if(degrees < 360){
+		} else if(degrees <= 360){
 			return smoothBetween(360, 270, degrees) * gatillo;
 		} else {
 			return 0;
@@ -42,13 +42,13 @@ public class TrenMotriz extends Subsystem {
 	}
 	
 	private double getMotorDer(double degrees, double gatillo){
-		if(degrees < 90){
+		if(degrees <= 90){
 			return smoothBetween(0, 90, degrees) * gatillo;
-		} else if(degrees < 180){
+		} else if(degrees <= 180){
 			return 1 * gatillo;
-		} else if(degrees < 270){
+		} else if(degrees <= 270){
 			return smoothBetween(270, 360, degrees) * gatillo;
-		} else if(degrees < 360){
+		} else if(degrees <= 360){
 			return -1 * gatillo;
 		} else {
 			return 0;
