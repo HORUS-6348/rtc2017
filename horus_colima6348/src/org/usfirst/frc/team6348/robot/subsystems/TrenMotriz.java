@@ -56,22 +56,53 @@ public class TrenMotriz extends Subsystem {
 	}
 	
 	public void initDefaultCommand(){
-		double x = Robot.oi.stick0.getRawAxis(0);
-		double y = Robot.oi.stick0.getRawAxis(1);
+		double degrees;
+		double dPad = Robot.oi.stick0.getPOV(0);
 		double gatillo = Robot.oi.stick0.getRawAxis(3);
 		
-		double deadZone = 0.15;
-		
-		
-		//Los joysticks tienen una zona muerta en su centro, para evitar esto
-		//si ambos valores están muy cercanos al mismo (0.15) los dejamos en cero.
-		if(Math.abs(x) < deadZone && Math.abs(y) < deadZone){
-			x       = 0;
-			y       = 0;
-			gatillo = 0;
+		if(dPad == -1){
+			double x = Robot.oi.stick0.getRawAxis(0);
+			double y = Robot.oi.stick0.getRawAxis(1);
+			
+			
+			double deadZone = 0.15;
+			
+			
+			//Los joysticks tienen una zona muerta en su centro, para evitar esto
+			//si ambos valores están muy cercanos al mismo (0.15) los dejamos en cero.
+			if(Math.abs(x) < deadZone && Math.abs(y) < deadZone){
+				x       = 0;
+				y       = 0;
+				gatillo = 0;
+			}
+			
+			degrees = Math.atan2(y,x);	
+		} else {
+			  if(dPad == 0){
+			   degrees = 90;
+			} else if(dPad == 45) {
+				degrees = 45;
+			} else if(dPad == 90){
+				degrees = 0;
+			} else if(dPad == 135){
+				degrees = 315;
+			} else if(dPad == 180){
+				degrees = 270;
+			} else if(dPad == 225){
+				degrees = 225;
+			} else if(dPad == 270){
+				degrees = 180;
+			} else if(dPad == 315){
+				degrees = 135;
+			} else {
+				//Esto no debería pasar...
+				System.out.println("POSIBLE ERROR: DPAD: " + dPad);
+				gatillo = 0;
+				degrees = 0;
+			}
 		}
 		
-		double degrees = Math.atan2(y,x);
+		
 		
 		double potencia_izq = getMotorIzq(degrees, gatillo);
 		double potencia_der = getMotorDer(degrees, gatillo);
