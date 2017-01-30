@@ -56,13 +56,15 @@ public class TrenMotriz extends Subsystem {
 	}
 	
 	public void initDefaultCommand(){
-		double degrees;
+		double degrees, x, y;
+		x = 0;
+		y = 0;
 		double dPad = Robot.oi.stick0.getPOV(0);
 		double gatillo = Robot.oi.stick0.getRawAxis(3);
 		
 		if(dPad == -1){
-			double x = Robot.oi.stick0.getRawAxis(0);
-			double y = Robot.oi.stick0.getRawAxis(1);
+			x = Robot.oi.stick0.getRawAxis(0);
+			y = Robot.oi.stick0.getRawAxis(1);
 			
 			
 			double deadZone = 0.15;
@@ -104,8 +106,11 @@ public class TrenMotriz extends Subsystem {
 		
 		
 		
+		
 		double potencia_izq = getMotorIzq(degrees, gatillo);
 		double potencia_der = getMotorDer(degrees, gatillo);
+		
+		System.out.println("INPUTS x:" + x + " y: " + y + " gatillo: " + gatillo + " dPad: " + dPad + "   OUTPUTS izq: " + potencia_izq + " der: " + potencia_der);
 		
 		//Gracias!!!
 
