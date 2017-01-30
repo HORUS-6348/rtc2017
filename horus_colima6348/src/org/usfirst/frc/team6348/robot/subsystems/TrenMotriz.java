@@ -9,16 +9,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class TrenMotriz extends Subsystem {
 
-	Spark motor_sup_izq = RobotMap.motor_sup_izq;
-	Spark motor_sup_der = RobotMap.motor_sup_der;
-	Spark motor_inf_izq = RobotMap.motor_inf_izq;
-	Spark motor_inf_der = RobotMap.motor_inf_der;
+	Spark motor_izq = RobotMap.motor_izq;
+	Spark motor_der = RobotMap.motor_der;
 	
 	public void parar(){
-		motor_sup_izq.set(0);
-		motor_sup_der.set(0);
-		motor_inf_izq.set(0);
-		motor_inf_der.set(0);
+		motor_izq.set(0);
+		motor_der.set(0);
 	}
 	
 	/*
@@ -31,7 +27,7 @@ public class TrenMotriz extends Subsystem {
 		return 2*normalized - 1;
 	}
 	
-	private double motorIzq(double degrees, double gatillo){
+	private double getMotorIzq(double degrees, double gatillo){
 		if(degrees < 90){
 			return 1 * gatillo;
 		} else if(degrees < 180){
@@ -45,7 +41,7 @@ public class TrenMotriz extends Subsystem {
 		}
 	}
 	
-	private double motorDer(double degrees, double gatillo){
+	private double getMotorDer(double degrees, double gatillo){
 		if(degrees < 90){
 			return smoothBetween(0, 90, degrees) * gatillo;
 		} else if(degrees < 180){
@@ -74,12 +70,13 @@ public class TrenMotriz extends Subsystem {
 			y       = 0;
 			gatillo = 0;
 		}
-		
+		W
 		double degrees = Math.atan2(y,x);
 		
-		double potencia_izq = motorIzq(degrees, gatillo);
-		double potencia_der = motorDer(degrees, gatillo);
+		double potencia_izq = getMotorIzq(degrees, gatillo);
+		double potencia_der = getMotorDer(degrees, gatillo);
 		
+<<<<<<< Upstream, based on origin/master
 		/* Esta es la variante del código para cuatro motores 
 		motor_sup_izq.set(potencia_izq);
 		motor_inf_izq.set(potencia_izq);
@@ -93,6 +90,10 @@ public class TrenMotriz extends Subsystem {
 		motor_sup_der.set(potencia_der);
 		
 		//Feliz cumpleaños fish...!!!
+=======
+		motor_izq.set(potencia_izq);
+		motor_der.set(potencia_der);
+>>>>>>> 234a540 Corregimos de cuatro Sparks a dos y cambiamos unos nombres de variables (
 	}
 }
 

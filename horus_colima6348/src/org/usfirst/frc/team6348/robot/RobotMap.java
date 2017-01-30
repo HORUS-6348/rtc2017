@@ -10,16 +10,12 @@ import edu.wpi.first.wpilibj.Spark;
  */
 public class RobotMap {
 	//Estos Spark son los cuatro motores del tren motriz
-	public static Spark motor_sup_izq;
-	public static Spark motor_sup_der;
-	public static Spark motor_inf_izq;
-	public static Spark motor_inf_der;
+	public static Spark motor_izq;
+	public static Spark motor_der;
 	
 	public static void init(){
 		//Inicializamos los controladores
-		motor_sup_izq = new Spark(0);
-		motor_sup_der = new Spark(1);
-		motor_inf_izq = new Spark(2);
-		motor_inf_der = new Spark(3);
+		motor_izq = new Spark(0);
+		motor_der = new Spark(1);
 	}
 }
