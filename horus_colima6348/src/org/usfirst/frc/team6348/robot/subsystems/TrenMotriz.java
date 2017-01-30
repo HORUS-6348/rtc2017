@@ -70,30 +70,17 @@ public class TrenMotriz extends Subsystem {
 			y       = 0;
 			gatillo = 0;
 		}
-		W
+		
 		double degrees = Math.atan2(y,x);
 		
 		double potencia_izq = getMotorIzq(degrees, gatillo);
 		double potencia_der = getMotorDer(degrees, gatillo);
 		
-<<<<<<< Upstream, based on origin/master
-		/* Esta es la variante del código para cuatro motores 
-		motor_sup_izq.set(potencia_izq);
-		motor_inf_izq.set(potencia_izq);
-		motor_sup_der.set(potencia_der);
-		motor_sup_izq.set(potencia_der);
-		*/
-		
-		//Variante con dos motores
-		
-		motor_sup_izq.set(potencia_izq);
-		motor_sup_der.set(potencia_der);
-		
-		//Feliz cumpleaños fish...!!!
-=======
+		//Gracias!!!
+
 		motor_izq.set(potencia_izq);
 		motor_der.set(potencia_der);
->>>>>>> 234a540 Corregimos de cuatro Sparks a dos y cambiamos unos nombres de variables (
+
 	}
 }
 
