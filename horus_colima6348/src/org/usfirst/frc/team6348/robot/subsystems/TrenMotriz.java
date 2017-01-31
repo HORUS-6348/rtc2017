@@ -100,7 +100,7 @@ public class TrenMotriz extends Subsystem {
 			
 			motor_izq.set(potencia_izq);
 			motor_der.set(-potencia_der);
-			System.out.println("INPUTS x:" + x + " y: " + y + " gatillo: " + gatillo + " degrees: " + degrees + "  OUTPUTS izq: " + potencia_izq + " der: " + potencia_der);
+			System.out.println("INPUTS x:" + x + " y: " + y + " gatillo: " + gatillo + " degrees: " + degrees + "  OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzq(degrees, 1) + " der_full: " + getMotorDer(degrees, 1));
 			
 		} else { //Usamos dPad
 			double potencia_izq = getMotorIzqDpad(dPad, gatillo);
@@ -108,7 +108,7 @@ public class TrenMotriz extends Subsystem {
 			
 			motor_izq.set(potencia_izq);
 			motor_der.set(potencia_der);
-			System.out.println("INPUTS gatillo: " + gatillo + " dPad: " + dPad + "   OUTPUTS izq: " + potencia_izq + " der: " + potencia_der);
+			System.out.println("INPUTS gatillo: " + gatillo + " dPad: " + dPad + "   OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzqDpad(dPad, 1) + " der_full: " + getMotorDerDpad(dPad, 1));
 			
 		}
 				
