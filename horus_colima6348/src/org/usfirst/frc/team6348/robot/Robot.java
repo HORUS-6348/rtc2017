@@ -34,8 +34,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		oi = new OI();
 		trenMotriz = new TrenMotriz();
+		oi = new OI();
 	}
 
 	/**
