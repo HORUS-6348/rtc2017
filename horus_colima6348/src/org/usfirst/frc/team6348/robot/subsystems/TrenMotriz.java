@@ -56,11 +56,11 @@ public class TrenMotriz extends Subsystem {
 	}
 	
 	public void initDefaultCommand(){
-		double gatillo = Robot.oi.stick0.getRawAxis(3);
+		double gatillo = Robot.oi.stick0.getRawAxis(3) *0.5;
 		double otroGatillo = Robot.oi.stick0.getRawAxis(2);
 		
 		if(otroGatillo > 0.05){
-			gatillo = otroGatillo * 0.5;
+			gatillo = otroGatillo * 0.3;
 		}
 		
 		boolean stateA = Robot.oi.A.get();
@@ -68,11 +68,11 @@ public class TrenMotriz extends Subsystem {
 		boolean stateY = Robot.oi.Y.get();
 
 		if(stateA){
-			gatillo = 0.2;
+			gatillo = 0.1;
 		} else if(stateX){
-			gatillo = 0.4;
+			gatillo = 0.2;
 		} else if(stateY){
-			gatillo = 0.6;
+			gatillo = 0.3;
 		}
 		
 		double dPad = Robot.oi.stick0.getPOV(0);
