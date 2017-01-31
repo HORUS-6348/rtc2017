@@ -82,7 +82,7 @@ public class TrenMotriz extends Subsystem {
 		
 		double dPad = Robot.oi.stick0.getPOV(0);
 		
-		if(dPad == -1){ //Usamos joystick
+		if(dPad == -1){ //Si no está presionado el D-PAD, usamos joystick
 			double x = Robot.oi.stick0.getRawAxis(0);
 			double y = Robot.oi.stick0.getRawAxis(1);
 			
@@ -98,8 +98,8 @@ public class TrenMotriz extends Subsystem {
 				gatillo = 0;
 			}
 			
-			double radians = Math.atan2(y,x); 
-			double degrees = toDegrees(radians);
+			double radians = Math.atan2(y,x); //Esta función nos da la dirección del vector en radianes
+			double degrees = toDegrees(radians); //Lo pasamos a grados y lo corregimos a nuestra orientación
 			
 			double potencia_izq = getMotorIzq(degrees, gatillo);
 			double potencia_der = getMotorDer(degrees, gatillo);
@@ -108,7 +108,7 @@ public class TrenMotriz extends Subsystem {
 			motor_der.set(-potencia_der);
 			System.out.println("INPUTS x:" + x + " y: " + y + " gatillo: " + gatillo + " degrees: " + degrees + "  OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzq(degrees, 1) + " der_full: " + getMotorDer(degrees, 1));
 			
-		} else { //Usamos dPad
+		} else { //Está presionado el D-PAD, por lo que toma prioridad sobre el joystick
 			double potencia_izq = getMotorIzqDpad(dPad, gatillo);
 			double potencia_der = getMotorDerDpad(dPad, gatillo);
 			
