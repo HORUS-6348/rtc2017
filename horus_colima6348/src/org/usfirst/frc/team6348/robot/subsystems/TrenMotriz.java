@@ -126,11 +126,11 @@ public class TrenMotriz extends Subsystem {
 		} else if(pad == 90){
 			return 1 * gatillo;
 		} else if(pad == 135){
-			return 0 * gatillo;
+			return -1 * gatillo;
 		} else if(pad == 180){
 			return -1 * gatillo;
 		} else if(pad == 225){
-			return -1 * gatillo;
+			return  0 * gatillo;
 		} else if(pad == 270){
 			return -1 * gatillo;
 		} else if(pad == 315){
@@ -147,11 +147,11 @@ public class TrenMotriz extends Subsystem {
 		} else if(pad == 90){
 			return 1 * gatillo;
 		} else if(pad == 135){
-			return 1 * gatillo;
+			return 0 * gatillo;
 		} else if(pad == 180){
 			return 1 * gatillo;
 		} else if(pad == 225){
-			return 0 * gatillo;
+			return 1 * gatillo;
 		} else if(pad == 270){
 			return -1 * gatillo;
 		} else if(pad == 315){
