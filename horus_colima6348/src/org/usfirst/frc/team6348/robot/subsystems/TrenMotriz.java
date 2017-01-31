@@ -55,6 +55,11 @@ public class TrenMotriz extends Subsystem {
 		}
 	}
 	
+	private double toDegrees(double angrad){
+		double degrees = Math.toDegrees(angrad);
+		return degrees;
+	}
+	
 	public void initDefaultCommand(){
 		double gatillo = Robot.oi.stick0.getRawAxis(3) * 0.2;
 		double otroGatillo = Robot.oi.stick0.getRawAxis(2);
@@ -93,7 +98,8 @@ public class TrenMotriz extends Subsystem {
 				gatillo = 0;
 			}
 			
-			double degrees = Math.atan2(y,x);
+			double radians = Math.atan2(y,x); 
+			double degrees = toDegrees(radians);
 			
 			double potencia_izq = getMotorIzq(degrees, gatillo);
 			double potencia_der = getMotorDer(degrees, gatillo);
