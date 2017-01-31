@@ -102,7 +102,7 @@ public class TrenMotriz extends Subsystem {
 		
 	private double getMotorIzqDpad(double pad, double gatillo){
 		if(pad == 0){
-			return -1 * gatillo;
+			return 1 * gatillo;
 		} else if(pad == 45){
 			return -1 * gatillo;
 		} else if(pad == 90){
