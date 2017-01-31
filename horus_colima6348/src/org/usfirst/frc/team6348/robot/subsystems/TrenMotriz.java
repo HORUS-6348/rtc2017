@@ -109,8 +109,8 @@ public class TrenMotriz extends Subsystem {
 		
 		//Gracias!!!
 
-		motor_izq.set(potencia_izq);
-		motor_der.set(-potencia_der);
+		motor_izq.set(-potencia_izq);
+		motor_der.set(potencia_der);
 
 	}
 }
