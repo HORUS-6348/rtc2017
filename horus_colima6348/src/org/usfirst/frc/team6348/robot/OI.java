@@ -15,7 +15,10 @@ public class OI {
 	public Joystick stick0 = new Joystick(0); //Joystick de Xbox 360
 	public Joystick stick1 = new Joystick(1); //Joystick Logitech
 	
-	Button B = new JoystickButton(stick0, 2); //Botón B para paro de emergencia
+	public Button B = new JoystickButton(stick0, 3); //Botón B para paro de emergencia
+	public Button X = new JoystickButton(stick0, 2);
+	public Button Y = new JoystickButton(stick0, 1);
+	public Button A = new JoystickButton(stick0, 0);
 	
 	public OI(){
 		B.whileHeld(new ParoEmergencia()); //TODO: Implementar paro de emergencia
