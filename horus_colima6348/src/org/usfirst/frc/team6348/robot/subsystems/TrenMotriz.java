@@ -43,11 +43,11 @@ public class TrenMotriz extends Subsystem {
 	
 	private double getMotorDer(double degrees, double gatillo){
 		if(degrees <= 90){
-			return smoothBetween(90, 0, degrees) * gatillo;
+			return smoothBetween(0, 90, degrees) * gatillo;
 		} else if(degrees <= 180){
 			return 1 * gatillo;
 		} else if(degrees <= 270){
-			return smoothBetween(270, 360, degrees) * gatillo;
+			return smoothBetween(360, 270, degrees) * gatillo;
 		} else if(degrees <= 360){
 			return -1 * gatillo;
 		} else {
@@ -80,8 +80,8 @@ public class TrenMotriz extends Subsystem {
 			double potencia_izq = getMotorIzq(degrees, gatillo);
 			double potencia_der = getMotorDer(degrees, gatillo);
 			
-			motor_izq.set(-potencia_izq);
-			motor_der.set(potencia_der);
+			motor_izq.set(potencia_izq);
+			motor_der.set(-potencia_der);
 			System.out.println("INPUTS x:" + x + " y: " + y + " gatillo: " + gatillo + " degrees: " + degrees + "  OUTPUTS izq: " + potencia_izq + " der: " + potencia_der);
 			
 		} else { //Usamos dPad
