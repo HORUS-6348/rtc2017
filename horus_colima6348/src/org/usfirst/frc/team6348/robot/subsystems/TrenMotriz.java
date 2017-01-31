@@ -116,6 +116,49 @@ public class TrenMotriz extends Subsystem {
 
 		motor_izq.set(-potencia_izq);
 		motor_der.set(potencia_der);
+		
+	/*private double getMotorIzq(double pad, double gatillo){
+		if(pad == 0){
+			return -1 * gatillo;
+		} else if(pad == 45){
+			return -1 * gatillo;
+		} else if(pad == 90){
+			return -1 * gatillo;
+		} else if(pad == 135){
+			return 0 * gatillo;
+		} else if(pad == 180){
+			return 1 * gatillo;
+		} else if(pad == 225){
+			return 1 * gatillo;
+		} else if(pad == 270){
+			return 1 * gatillo;
+		} else if(pad == 315){
+			return 0 * gatillo;
+		} else {
+			return 0;
+		}
+	}
+	private double getMotorDer(double pad, double gatillo){
+		if(pad == 0){
+			return 1 * gatillo;
+		} else if(pad == 45){
+			return 0 * gatillo;
+		} else if(pad == 90){
+			return -1 * gatillo;
+		} else if(pad == 135){
+			return -1 * gatillo;
+		} else if(pad == 180){
+			return -1 * gatillo;
+		} else if(pad == 225){
+			return 0 * gatillo;
+		} else if(pad == 270){
+			return 1 * gatillo;
+		} else if(pad == 315){
+			return 1 * gatillo;
+		} else {
+			return 0;
+		}
+	}*/
 
 	}
 }
