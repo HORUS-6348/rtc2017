@@ -114,7 +114,7 @@ public class TrenMotriz extends Subsystem {
 		} else if(pad == 225){
 			return 1 * gatillo;
 		} else if(pad == 270){
-			return 1 * gatillo;
+			return -1 * gatillo;
 		} else if(pad == 315){
 			return 0 * gatillo;
 		} else {
