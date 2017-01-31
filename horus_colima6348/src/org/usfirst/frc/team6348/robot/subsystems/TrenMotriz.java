@@ -56,15 +56,12 @@ public class TrenMotriz extends Subsystem {
 	}
 	
 	public void initDefaultCommand(){
-		double degrees, x, y;
-		x = 0;
-		y = 0;
-		double dPad = Robot.oi.stick0.getPOV(0);
 		double gatillo = Robot.oi.stick0.getRawAxis(3);
+		double dPad = Robot.oi.stick0.getPOV(0);
 		
-		if(dPad == -1){
-			x = Robot.oi.stick0.getRawAxis(0);
-			y = Robot.oi.stick0.getRawAxis(1);
+		if(dPad == -1){ //Usamos joystick
+			double x = Robot.oi.stick0.getRawAxis(0);
+			double y = Robot.oi.stick0.getRawAxis(1);
 			
 			
 			double deadZone = 0.15;
@@ -78,46 +75,32 @@ public class TrenMotriz extends Subsystem {
 				gatillo = 0;
 			}
 			
-			degrees = Math.atan2(y,x);	
-		} else {
-			  if(dPad == 0){
-			   degrees = 90;
-			} else if(dPad == 45) {
-				degrees = 45;
-			} else if(dPad == 90){
-				degrees = 0;
-			} else if(dPad == 135){
-				degrees = 315;
-			} else if(dPad == 180){
-				degrees = 270;
-			} else if(dPad == 225){
-				degrees = 225;
-			} else if(dPad == 270){
-				degrees = 180;
-			} else if(dPad == 315){
-				degrees = 135;
-			} else {
-				//Esto no debería pasar...
-				System.out.println("POSIBLE ERROR: DPAD: " + dPad);
-				gatillo = 0;
-				degrees = 0;
-			}
+			double degrees = Math.atan2(y,x);
+			
+			double potencia_izq = getMotorIzq(degrees, gatillo);
+			double potencia_der = getMotorDer(degrees, gatillo);
+			
+			motor_izq.set(-potencia_izq);
+			motor_der.set(potencia_der);
+			System.out.println("INPUTS x:" + x + " y: " + y + " gatillo: " + gatillo + " degrees: " + degrees + "  OUTPUTS izq: " + potencia_izq + " der: " + potencia_der);
+			
+		} else { //Usamos dPad
+			double potencia_izq = getMotorIzqDpad(dPad, gatillo);
+			double potencia_der = getMotorDerDpad(dPad, gatillo);
+			
+			motor_izq.set(potencia_izq);
+			motor_der.set(potencia_der);
+			System.out.println("INPUTS gatillo: " + gatillo + " dPad: " + dPad + "   OUTPUTS izq: " + potencia_izq + " der: " + potencia_der);
+			
 		}
+				
+		
+		;
 		
 		
+	}
 		
-		
-		double potencia_izq = getMotorIzq(degrees, gatillo);
-		double potencia_der = getMotorDer(degrees, gatillo);
-		
-		System.out.println("INPUTS x:" + x + " y: " + y + " gatillo: " + gatillo + " dPad: " + dPad + "   OUTPUTS izq: " + potencia_izq + " der: " + potencia_der);
-		
-		//Gracias!!!
-
-		motor_izq.set(-potencia_izq);
-		motor_der.set(potencia_der);
-		
-	/*private double getMotorIzq(double pad, double gatillo){
+	private double getMotorIzqDpad(double pad, double gatillo){
 		if(pad == 0){
 			return -1 * gatillo;
 		} else if(pad == 45){
@@ -138,11 +121,11 @@ public class TrenMotriz extends Subsystem {
 			return 0;
 		}
 	}
-	private double getMotorDer(double pad, double gatillo){
+	private double getMotorDerDpad(double pad, double gatillo){
 		if(pad == 0){
 			return 1 * gatillo;
 		} else if(pad == 45){
-			return 0 * gatillo;
+			return 0* gatillo;
 		} else if(pad == 90){
 			return -1 * gatillo;
 		} else if(pad == 135){
@@ -158,8 +141,8 @@ public class TrenMotriz extends Subsystem {
 		} else {
 			return 0;
 		}
-	}*/
-
 	}
+
+
 }
 
