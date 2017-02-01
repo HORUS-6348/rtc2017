@@ -18,7 +18,7 @@ public class TrenMotriz extends Subsystem {
 	}
 	
 	/*
-	 * min -> 1
+	 * min ->  1
 	 * max -> -1
 	 * */
 	private double smoothBetween(double min, double max, double degrees){
@@ -47,7 +47,8 @@ public class TrenMotriz extends Subsystem {
 		} else if(degrees <= 180){
 			return 1 * gatillo;
 		} else if(degrees <= 270){
-			return smoothBetween(270, 360, degrees) * gatillo;
+			System.out.println("Cuadrante III: " + degrees + "   " + gatillo);
+			return smoothBetween(180, 270, degrees) * gatillo;
 		} else if(degrees <= 360){
 			return -1 * gatillo;
 		} else {
@@ -57,15 +58,19 @@ public class TrenMotriz extends Subsystem {
 	
 	private double toDegrees(double angrad){
 		double degrees = Math.toDegrees(angrad);
-		return degrees;
+		if(degrees < 0){
+			return -degrees;
+		} else {
+			return 360 - degrees;
+		}
 	}
 	
 	public void initDefaultCommand(){
-		double gatillo = Robot.oi.stick0.getRawAxis(3) * 0.2;
+		double gatillo = Robot.oi.stick0.getRawAxis(3);
 		double otroGatillo = Robot.oi.stick0.getRawAxis(2);
 		
 		if(otroGatillo > 0.05){
-			gatillo = otroGatillo * 0.4;
+			gatillo = (otroGatillo * 0.4) + (gatillo * 0.5);
 		}
 		
 		boolean stateA = Robot.oi.A.get();
@@ -73,16 +78,16 @@ public class TrenMotriz extends Subsystem {
 		boolean stateY = Robot.oi.Y.get();
 
 		if(stateA){
-			gatillo = 0.2;
+			gatillo = 0.25;
 		} else if(stateX){
-			gatillo = 0.3;
-		} else if(stateY){
 			gatillo = 0.5;
+		} else if(stateY){
+			gatillo = 0.75;
 		}
 		
 		double dPad = Robot.oi.stick0.getPOV(0);
 		
-		if(dPad == -1){ //Si no est· presionado el D-PAD, usamos joystick
+		if(dPad == -1){ //Si no est√° presionado el D-PAD, usamos joystick
 			double x = Robot.oi.stick0.getRawAxis(0);
 			double y = Robot.oi.stick0.getRawAxis(1);
 			
@@ -98,17 +103,17 @@ public class TrenMotriz extends Subsystem {
 				gatillo = 0;
 			}
 			
-			double radians = Math.atan2(y,x); //Esta funciÛn nos da la direcciÛn del vector en radianes
-			double degrees = toDegrees(radians); //Lo pasamos a grados y lo corregimos a nuestra orientaciÛn
+			double radians = Math.atan2(y,x); //Esta funci√≥n nos da la direcci√≥n del vector en radianes
+			double degrees = toDegrees(radians); //Lo pasamos a grados y lo corregimos a nuestra orientaci√≥n
 			
 			double potencia_izq = getMotorIzq(degrees, gatillo);
 			double potencia_der = getMotorDer(degrees, gatillo);
 			
 			motor_izq.set(potencia_izq);
 			motor_der.set(-potencia_der);
-			System.out.println("INPUTS x:" + x + " y: " + y + " gatillo: " + gatillo + " degrees: " + degrees + "  OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzq(degrees, 1) + " der_full: " + getMotorDer(degrees, 1));
+			System.out.println("INPUTS" + " gatillo: " + gatillo + " degrees: " + degrees + "  OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzq(degrees, 1) + " der_full: " + getMotorDer(degrees, 1));
 			
-		} else { //Est· presionado el D-PAD, por lo que toma prioridad sobre el joystick
+		} else { //Est√° presionado el D-PAD, por lo que toma prioridad sobre el joystick
 			double potencia_izq = getMotorIzqDpad(dPad, gatillo);
 			double potencia_der = getMotorDerDpad(dPad, gatillo);
 			
