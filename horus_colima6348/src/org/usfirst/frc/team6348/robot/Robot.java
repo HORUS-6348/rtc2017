@@ -81,6 +81,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		if(oi.B.get()){
+			RobotMap.motor_der.set(0);
+			RobotMap.motor_izq.set(0);
+		}
 		if(timer.get() > 5.0){
 			RobotMap.motor_der.set(0);
 			RobotMap.motor_izq.set(0);
