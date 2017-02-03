@@ -47,7 +47,7 @@ public class TrenMotriz extends Subsystem {
 		} else if(degrees <= 180){
 			return 1 * gatillo;
 		} else if(degrees <= 270){
-			System.out.println("Cuadrante III: " + degrees + "   " + gatillo);
+			//System.out.println("Cuadrante III: " + degrees + "   " + gatillo);
 			return smoothBetween(180, 270, degrees) * gatillo;
 		} else if(degrees <= 360){
 			return -1 * gatillo;
@@ -111,7 +111,7 @@ public class TrenMotriz extends Subsystem {
 			
 			motor_izq.set(potencia_izq);
 			motor_der.set(-potencia_der);
-			System.out.println("INPUTS" + " gatillo: " + gatillo + " degrees: " + degrees + "  OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzq(degrees, 1) + " der_full: " + getMotorDer(degrees, 1));
+			//System.out.println("INPUTS" + " gatillo: " + gatillo + " degrees: " + degrees + "  OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzq(degrees, 1) + " der_full: " + getMotorDer(degrees, 1));
 			
 		} else { //Está presionado el D-PAD, por lo que toma prioridad sobre el joystick
 			double potencia_izq = getMotorIzqDpad(dPad, gatillo);
@@ -119,7 +119,7 @@ public class TrenMotriz extends Subsystem {
 			
 			motor_izq.set(potencia_izq);
 			motor_der.set(potencia_der);
-			System.out.println("INPUTS gatillo: " + gatillo + " dPad: " + dPad + "   OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzqDpad(dPad, 1) + " der_full: " + getMotorDerDpad(dPad, 1));
+			//System.out.println("INPUTS gatillo: " + gatillo + " dPad: " + dPad + "   OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzqDpad(dPad, 1) + " der_full: " + getMotorDerDpad(dPad, 1));
 			
 		}
 				
