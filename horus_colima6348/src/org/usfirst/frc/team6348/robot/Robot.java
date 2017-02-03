@@ -2,6 +2,7 @@
 package org.usfirst.frc.team6348.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -66,18 +67,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		RobotMap.motor_der.set(-trenMotriz.getMotorDer(90, 0.8));
+		RobotMap.motor_izq.set(trenMotriz.getMotorIzq(90, 0.8));
+		Timer.delay(5);
+		RobotMap.motor_der.set(0);
+		RobotMap.motor_izq.set(0);
+		
 	}
 
 	/**
