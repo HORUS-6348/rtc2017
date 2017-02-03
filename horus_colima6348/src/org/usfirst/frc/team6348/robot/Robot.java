@@ -24,6 +24,7 @@ public class Robot extends IterativeRobot {
 
 	public static TrenMotriz trenMotriz;
 	public static OI oi;
+	private Timer timer;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
+		timer = new Timer();
 		trenMotriz = new TrenMotriz();
 		oi = new OI();
 	}
@@ -69,10 +71,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		RobotMap.motor_der.set(-trenMotriz.getMotorDer(90, 0.8));
 		RobotMap.motor_izq.set(trenMotriz.getMotorIzq(90, 0.8));
-		Timer.delay(5);
-		RobotMap.motor_der.set(0);
-		RobotMap.motor_izq.set(0);
-		
+		timer.reset();
+		timer.start();		
 	}
 
 	/**
@@ -81,6 +81,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		if(timer.get() > 5.0){
+			RobotMap.motor_der.set(0);
+			RobotMap.motor_izq.set(0);
+		}
 	}
 
 	@Override
