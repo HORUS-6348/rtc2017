@@ -69,7 +69,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		RobotMap.motor_der.set(-trenMotriz.getMotorDer(90, 0.65));
+		RobotMap.motor_der.set(-0.95 * trenMotriz.getMotorDer(90, 0.65));
 		RobotMap.motor_izq.set(trenMotriz.getMotorIzq(90, 0.65));
 		timer.reset();
 		timer.start();		
@@ -107,7 +107,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		trenMotriz.initDefaultCommand();
+		trenMotriz.initDefaultCommandAlt();
 	}
 
 	/**

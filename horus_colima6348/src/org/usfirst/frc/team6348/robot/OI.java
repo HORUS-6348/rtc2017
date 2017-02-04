@@ -20,6 +20,9 @@ public class OI {
 	public Button Y = new JoystickButton(stick0, 4);
 	public Button A = new JoystickButton(stick0, 1);
 	
+	public Button gatillo = new JoystickButton(stick1, 1);
+	
+	
 	public OI(){
 		B.whileHeld(new ParoEmergencia()); 
 	}
