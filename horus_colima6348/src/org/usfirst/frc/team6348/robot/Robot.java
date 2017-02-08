@@ -69,8 +69,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		RobotMap.motor_der.set(-0.95 * trenMotriz.getMotorDer(90, 0.65));
-		RobotMap.motor_izq.set(trenMotriz.getMotorIzq(90, 0.65));
+		RobotMap.motor_der.set(-1.0  * trenMotriz.getMotorDer(90, 0.5));
+		RobotMap.motor_izq.set(0.97 * trenMotriz.getMotorIzq(90, 0.5));
 		timer.reset();
 		timer.start();		
 	}
@@ -85,7 +85,7 @@ public class Robot extends IterativeRobot {
 			RobotMap.motor_der.set(0);
 			RobotMap.motor_izq.set(0);
 		}
-		if(timer.get() > 5.0){
+		if(timer.get() > 8.0){
 			RobotMap.motor_der.set(0);
 			RobotMap.motor_izq.set(0);
 		}

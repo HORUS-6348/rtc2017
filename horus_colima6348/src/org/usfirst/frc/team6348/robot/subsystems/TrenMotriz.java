@@ -117,8 +117,8 @@ public class TrenMotriz extends Subsystem {
 			double potencia_der = getMotorDerDpad(dPad, gatillo);
 			
 			motor_izq.set(potencia_izq);
-			motor_der.set(-0.95 * potencia_der);
-			//System.out.println("INPUTS gatillo: " + gatillo + " dPad: " + dPad + "   OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzqDpad(dPad, 1) + " der_full: " + getMotorDerDpad(dPad, 1));
+			motor_der.set(0.95 * potencia_der);
+			System.out.println("INPUTS gatillo: " + gatillo + " dPad: " + dPad + "   OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzqDpad(dPad, 1) + " der_full: " + getMotorDerDpad(dPad, 1));
 			
 		}	
 	}
