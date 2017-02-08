@@ -107,7 +107,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		trenMotriz.initDefaultCommandAlt();
+		trenMotriz.initDefaultCommand();
 	}
 
 	/**

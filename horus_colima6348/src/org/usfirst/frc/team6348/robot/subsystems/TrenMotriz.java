@@ -69,7 +69,7 @@ public class TrenMotriz extends Subsystem {
 		double otroGatillo = Robot.oi.stick0.getRawAxis(2);
 		
 		if(otroGatillo > 0.05){
-			gatillo = (otroGatillo * 0.4) + (gatillo * 0.5);
+			gatillo = (otroGatillo * 0.5) + (gatillo * 0.5);
 		}
 		
 		boolean stateA = Robot.oi.A.get();
@@ -117,45 +117,12 @@ public class TrenMotriz extends Subsystem {
 			double potencia_der = getMotorDerDpad(dPad, gatillo);
 			
 			motor_izq.set(potencia_izq);
-			motor_der.set(potencia_der);
+			motor_der.set(-0.95 * potencia_der);
 			//System.out.println("INPUTS gatillo: " + gatillo + " dPad: " + dPad + "   OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzqDpad(dPad, 1) + " der_full: " + getMotorDerDpad(dPad, 1));
 			
 		}	
 	}
-	public void initDefaultCommandAlt(){
-		double gatillo = 0;
-		
-		if(Robot.oi.gatillo.get()){
-			gatillo = 0.5;
-		}
-		
-		double x = Robot.oi.stick1.getRawAxis(0);
-		double y = Robot.oi.stick1.getRawAxis(1);
-			
-			
-		double deadZone = 0.15;
-			
-			
-		//Los joysticks tienen una zona muerta en su centro, para evitar esto
-		//si ambos valores están muy cercanos al mismo (0.15) los dejamos en cero.
-		if(Math.abs(x) < deadZone && Math.abs(y) < deadZone){
-			x       = 0;
-			y       = 0;
-			gatillo = 0;
-		}
-			
-		double radians = Math.atan2(y,x); //Esta función nos da la dirección del vector en radianes
-		double degrees = toDegrees(radians); //Lo pasamos a grados y lo corregimos a nuestra orientación
-			
-		double potencia_izq = getMotorIzq(degrees, gatillo);
-		double potencia_der = getMotorDer(degrees, gatillo);
-			
-		motor_izq.set(potencia_izq);
-		motor_der.set(-0.95 * potencia_der);
-		//System.out.println("INPUTS" + " gatillo: " + gatillo + " degrees: " + degrees + "  OUTPUTS izq: " + potencia_izq + " der: " + potencia_der + " izq_full: " + getMotorIzq(degrees, 1) + " der_full: " + getMotorDer(degrees, 1));
-			
-	
-	}
+
 	private double getMotorIzqDpad(double pad, double gatillo){
 		if(pad == 0){
 			return 1 * gatillo;
