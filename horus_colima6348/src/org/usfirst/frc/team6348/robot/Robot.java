@@ -43,7 +43,7 @@ public class Robot extends IterativeRobot {
 		timer.reset();
 		timer.start();
 		oi.gyro.calibrate();
-		System.out.println("Gyro calibrated in: " + timer.get() + "s s- angle is: " + oi.gyro.getAngle());
+		System.out.println("Gyro calibrated in: " + timer.get() + "s - angle is: " + oi.gyro.getAngle());
 	}
 
 	/**
