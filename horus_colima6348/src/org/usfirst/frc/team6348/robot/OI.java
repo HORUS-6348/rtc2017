@@ -1,6 +1,8 @@
 package org.usfirst.frc.team6348.robot;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -20,11 +22,11 @@ public class OI {
 	public Button Y = new JoystickButton(stick0, 4);
 	public Button A = new JoystickButton(stick0, 1);
 	
-	public Button gatillo = new JoystickButton(stick1, 1);
+	public ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
 	
 	public OI(){
-		B.whileHeld(new ParoEmergencia()); 
+		B.whileHeld(new ParoEmergencia());s
 	}
 	
 	

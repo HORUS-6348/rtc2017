@@ -39,6 +39,11 @@ public class Robot extends IterativeRobot {
 		timer = new Timer();
 		trenMotriz = new TrenMotriz();
 		oi = new OI();
+		System.out.println("Calibrating gyro - DON'T MOVE THE ROBOT!");
+		timer.reset();
+		timer.start();
+		oi.gyro.calibrate();
+		System.out.println("Gyro calibrated in: " + timer.get() + "s s- angle is: " + oi.gyro.getAngle());
 	}
 
 	/**
