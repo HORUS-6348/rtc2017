@@ -2,7 +2,6 @@
 package org.usfirst.frc.team6348.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -24,7 +23,6 @@ public class Robot extends IterativeRobot {
 
 	public static TrenMotriz trenMotriz;
 	public static OI oi;
-	private Timer timer;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -36,9 +34,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		timer = new Timer();
 		trenMotriz = new TrenMotriz();
 		oi = new OI();
+		
 	}
 
 	/**
@@ -69,10 +67,18 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		RobotMap.motor_der.set(-1.0  * trenMotriz.getMotorDer(90, 0.5));
-		RobotMap.motor_izq.set(0.97 * trenMotriz.getMotorIzq(90, 0.5));
-		timer.reset();
-		timer.start();		
+		autonomousCommand = chooser.getSelected();
+
+		/*
+		 * string autoSelected = SmartDashboard.getString("Auto Selector",
+		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
+		 * = new MyAutoCommand(); break; case "Default Auto": default:
+		 * autonomousCommand = new ExampleCommand(); break; }
+		 */
+
+		// schedule the autonomous command (example)
+		if (autonomousCommand != null)
+			autonomousCommand.start();
 	}
 
 	/**
@@ -81,14 +87,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		if(oi.B.get()){
-			RobotMap.motor_der.set(0);
-			RobotMap.motor_izq.set(0);
-		}
-		if(timer.get() > 8.0){
-			RobotMap.motor_der.set(0);
-			RobotMap.motor_izq.set(0);
-		}
 	}
 
 	@Override
@@ -100,7 +98,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
-
+	//A emilio fish le gusta el nepe
 	/**
 	 * This function is called periodically during operator control
 	 */
