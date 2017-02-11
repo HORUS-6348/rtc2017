@@ -25,6 +25,7 @@ public class Robot extends IterativeRobot {
 	public static TrenMotriz trenMotriz;
 	public static OI oi;
 	private Timer timer;
+	private double referenceAngle;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -39,11 +40,14 @@ public class Robot extends IterativeRobot {
 		timer = new Timer();
 		trenMotriz = new TrenMotriz();
 		oi = new OI();
+		System.out.println("Gyro angle is " + oi.gyro.getAngle());
 		System.out.println("Calibrating gyro - DON'T MOVE THE ROBOT!");
 		timer.reset();
 		timer.start();
 		oi.gyro.calibrate();
-		System.out.println("Gyro calibrated in: " + timer.get() + "s - angle is: " + oi.gyro.getAngle());
+		referenceAngle = oi.gyro.getAngle();
+		System.out.println("Gyro calibrated in: " + timer.get() + "s - angle is: " + referenceAngle);
+		
 	}
 
 	/**
@@ -74,8 +78,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		RobotMap.motor_der.set(-1.0  * trenMotriz.getMotorDer(90, 0.5));
-		RobotMap.motor_izq.set(0.97 * trenMotriz.getMotorIzq(90, 0.5));
+		referenceAngle = oi.gyro.getAngle();
+		RobotMap.motor_der.set(-1.0 * trenMotriz.getMotorDer(90, 0.3));
+		RobotMap.motor_izq.set( 1.0 * trenMotriz.getMotorIzq(90, 0.3));
 		timer.reset();
 		timer.start();		
 	}
@@ -84,15 +89,24 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	@Override
-	public void autonomousPeriodic() {
+	public void autonomousPeriodic() {	
 		Scheduler.getInstance().run();
-		if(oi.B.get()){
+		if(timer.get() > 10.0){
 			RobotMap.motor_der.set(0);
 			RobotMap.motor_izq.set(0);
-		}
-		if(timer.get() > 8.0){
-			RobotMap.motor_der.set(0);
-			RobotMap.motor_izq.set(0);
+		} else {
+			double gyroAngle = -(referenceAngle - oi.gyro.getAngle());
+			double kP        = 1.03 +  Math.abs(gyroAngle) * .01;
+			
+			System.out.println("Angle: " + gyroAngle + " kP: " + kP);
+			
+			if(gyroAngle > 0){
+				RobotMap.motor_der.set(-1.0 * kP * trenMotriz.getMotorDer(90, 0.3));
+				RobotMap.motor_izq.set( 1.0 * trenMotriz.getMotorIzq(90, 0.3));
+			} else {
+				RobotMap.motor_der.set(-1.0 * trenMotriz.getMotorDer(90, 0.3));
+				RobotMap.motor_izq.set( 1.0 * kP * trenMotriz.getMotorIzq(90, 0.3));
+			}
 		}
 	}
 
