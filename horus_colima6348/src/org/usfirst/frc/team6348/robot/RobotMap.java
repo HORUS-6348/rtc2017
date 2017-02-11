@@ -12,10 +12,12 @@ public class RobotMap {
 	//Estos Spark son los cuatro motores del tren motriz
 	public static Spark motor_izq;
 	public static Spark motor_der;
+	public static Spark lanzador;
 	
 	public static void init(){
 		//Inicializamos los controladores
 		motor_izq = new Spark(0);
 		motor_der = new Spark(1);
+		lanzador  = new Spark(2);
 	}
 }
