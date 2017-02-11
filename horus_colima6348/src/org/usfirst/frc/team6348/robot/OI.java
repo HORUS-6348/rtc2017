@@ -26,7 +26,6 @@ public class OI {
 	
 	
 	public OI(){
-		B.whileHeld(new ParoEmergencia());
 	}
 	
 	
