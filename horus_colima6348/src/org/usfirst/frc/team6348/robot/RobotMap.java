@@ -20,4 +20,5 @@ public class RobotMap {
 		motor_der = new Spark(1);
 		lanzador  = new Spark(2);
 	}
+	
 }

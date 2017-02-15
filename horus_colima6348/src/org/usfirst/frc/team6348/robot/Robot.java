@@ -9,6 +9,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import java.util.Random;
+
+import org.usfirst.frc.team6348.robot.commands.AutonomoCentral;
+import org.usfirst.frc.team6348.robot.commands.AutonomoLateral;
 import org.usfirst.frc.team6348.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6348.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team6348.robot.subsystems.TrenMotriz;
@@ -24,11 +28,10 @@ public class Robot extends IterativeRobot {
 
 	public static TrenMotriz trenMotriz;
 	public static OI oi;
-	private Timer timer;
-	private double referenceAngle;
+
 
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser chooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -37,17 +40,21 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		timer = new Timer();
-		trenMotriz = new TrenMotriz();
 		oi = new OI();
-		System.out.println("Gyro angle is " + oi.gyro.getAngle());
-		System.out.println("Calibrating gyro - DON'T MOVE THE ROBOT!");
-		timer.reset();
-		timer.start();
-		oi.gyro.calibrate();
-		referenceAngle = oi.gyro.getAngle();
-		System.out.println("Gyro calibrated in: " + timer.get() + "s - angle is: " + referenceAngle);
+		trenMotriz = new TrenMotriz();
+		chooser = new SendableChooser();
 		
+		
+		chooser.addDefault("Autónomo carriles laterales", new AutonomoLateral());
+		chooser.addObject("Autónomo carril central", new AutonomoCentral());
+		
+		SmartDashboard.putData("Autonomous mode chooser", chooser);
+		
+		gyroCalibrate();
+	}
+
+	private void gyroCalibrate() {
+		oi.gyro.calibrate();
 	}
 
 	/**
@@ -78,12 +85,15 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		referenceAngle = oi.gyro.getAngle();
-		RobotMap.motor_der.set(-1.0 * trenMotriz.getMotorDer(90, 0.3));
-		RobotMap.motor_izq.set( 1.0 * trenMotriz.getMotorIzq(90, 0.3));
-		timer.reset();
-		timer.start();		
+		autonomousCommand = (Command) chooser.getSelected();
+		autonomousCommand.start();
+			
 	}
+	
+	/*
+	 * Con 10 segundos y 30% de velocidad, avanza 6.07m -- 61 cm/s
+	 * Con 6 segundos  y 30% de velocidad, avanza 3.30m -- 55 cm/s
+	 */
 
 	/**
 	 * This function is called periodically during autonomous
@@ -91,23 +101,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {	
 		Scheduler.getInstance().run();
-		if(timer.get() > 10.0){
-			RobotMap.motor_der.set(0);
-			RobotMap.motor_izq.set(0);
-		} else {
-			double gyroAngle = -(referenceAngle - oi.gyro.getAngle());
-			double kP        = 1.03 +  Math.abs(gyroAngle) * .01;
-			
-			System.out.println("Angle: " + gyroAngle + " kP: " + kP);
-			
-			if(gyroAngle > 0){
-				RobotMap.motor_der.set(-1.0 * kP * trenMotriz.getMotorDer(90, 0.3));
-				RobotMap.motor_izq.set( 1.0 * trenMotriz.getMotorIzq(90, 0.3));
-			} else {
-				RobotMap.motor_der.set(-1.0 * trenMotriz.getMotorDer(90, 0.3));
-				RobotMap.motor_izq.set( 1.0 * kP * trenMotriz.getMotorIzq(90, 0.3));
-			}
-		}
+		
 	}
 
 	@Override
@@ -127,6 +121,10 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		trenMotriz.initDefaultCommand();
+	}
+	
+	public void robotPeriodic(){
+		
 	}
 
 	/**
