@@ -64,12 +64,12 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		trenMotriz.stop();
 	}
 
 	@Override
 	public void disabledPeriodic() {
-		trenMotriz.parar();
+		
 	}
 
 	/**
@@ -90,10 +90,6 @@ public class Robot extends IterativeRobot {
 			
 	}
 	
-	/*
-	 * Con 10 segundos y 30% de velocidad, avanza 6.07m -- 61 cm/s
-	 * Con 6 segundos  y 30% de velocidad, avanza 3.30m -- 55 cm/s
-	 */
 
 	/**
 	 * This function is called periodically during autonomous
@@ -110,8 +106,11 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		if (autonomousCommand != null){
 			autonomousCommand.cancel();
+		}
+		
+		trenMotriz.stop();
 	}
 
 	/**
@@ -120,7 +119,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		trenMotriz.initDefaultCommand();
 	}
 	
 	public void robotPeriodic(){
@@ -132,6 +130,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
+
 	}
 }

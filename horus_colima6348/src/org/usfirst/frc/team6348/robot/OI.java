@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc.team6348.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6348.robot.commands.ParoEmergencia;
 
 /**

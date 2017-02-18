@@ -2,6 +2,7 @@ package org.usfirst.frc.team6348.robot.subsystems;
 
 import org.usfirst.frc.team6348.robot.Robot;
 import org.usfirst.frc.team6348.robot.RobotMap;
+import org.usfirst.frc.team6348.robot.commands.ManejoTeleoperado;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
@@ -23,7 +24,6 @@ public class TrenMotriz extends Subsystem {
 		double normalized = (max - degrees) / interval;
 		return 2*normalized - 1;
 	}
-	
 	public double getMotorIzq(double degrees, double gatillo){
 		if(degrees <= 90){
 			return 1 * gatillo;
@@ -37,7 +37,6 @@ public class TrenMotriz extends Subsystem {
 			return 0;
 		}
 	}
-	
 	public double getMotorDer(double degrees, double gatillo){
 		if(degrees <= 90){
 			return -smoothBetween(90, 0, degrees) * gatillo;
@@ -51,7 +50,6 @@ public class TrenMotriz extends Subsystem {
 			return 0;
 		}
 	}
-	
 	private double getMotorIzqDpad(double pad, double gatillo){
 		if(pad == 0){
 			return 1 * gatillo;
@@ -94,7 +92,6 @@ public class TrenMotriz extends Subsystem {
 			return 0;
 		}
 	}
-	
 	private double toDegrees(double angrad){
 		double degrees = Math.toDegrees(angrad);
 		if(degrees < 0){
@@ -188,7 +185,7 @@ public class TrenMotriz extends Subsystem {
 	}
 	
 	public void initDefaultCommand(){
-		drive(Robot.oi.stick0, true);
+		setDefaultCommand(new ManejoTeleoperado());
 	}
 
 
