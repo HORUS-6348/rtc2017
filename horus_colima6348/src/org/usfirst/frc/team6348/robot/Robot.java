@@ -104,6 +104,7 @@ public class Robot extends IterativeRobot {
 		}
 		
 		trenMotriz.stop();
+		trenMotriz.initDefaultCommand();
 	}
 
 	/**
