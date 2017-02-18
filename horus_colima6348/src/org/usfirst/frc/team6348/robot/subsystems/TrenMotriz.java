@@ -155,11 +155,7 @@ public class TrenMotriz extends Subsystem {
 		double radians = Math.atan2(y,x); //Esta función nos da la dirección del vector en radianes
 		double degrees = toDegrees(radians); //Lo pasamos a grados y lo corregimos a nuestra orientación
 		
-		double potencia_izq = getMotorIzq(degrees, gatillo);
-		double potencia_der = getMotorDer(degrees, gatillo);
-		
-		motor_izq.set(potencia_izq);
-		motor_der.set(potencia_der);
+		drive(degrees, gatillo);
 	}
 
 	private double getGatillo(Joystick stick){
