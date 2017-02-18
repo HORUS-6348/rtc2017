@@ -1,11 +1,8 @@
 package org.usfirst.frc.team6348.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team6348.robot.Robot;
-import org.usfirst.frc.team6348.robot.RobotMap;
 
 /**
  *
