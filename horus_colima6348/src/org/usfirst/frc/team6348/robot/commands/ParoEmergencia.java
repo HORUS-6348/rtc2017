@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6348.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6348.robot.Robot;
 
@@ -16,6 +17,7 @@ public class ParoEmergencia extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		SmartDashboard.putString("Comando: ", "AutonomoLateral");
 	}
 
 	// Called repeatedly when this Command is scheduled to run

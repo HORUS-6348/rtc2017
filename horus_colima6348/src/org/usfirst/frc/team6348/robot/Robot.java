@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6348.robot.commands.AutonomoCentral;
 import org.usfirst.frc.team6348.robot.commands.AutonomoLateral;
+import org.usfirst.frc.team6348.robot.subsystems.Lanzador;
 import org.usfirst.frc.team6348.robot.subsystems.TrenMotriz;
 
 /**
@@ -20,6 +21,7 @@ import org.usfirst.frc.team6348.robot.subsystems.TrenMotriz;
 public class Robot extends IterativeRobot {
 
 	public static TrenMotriz trenMotriz;
+	public static Lanzador lanzador;
 	public static OI oi;
 
 
@@ -35,6 +37,7 @@ public class Robot extends IterativeRobot {
 		RobotMap.init();
 		oi = new OI();
 		trenMotriz = new TrenMotriz();
+		lanzador = new Lanzador();
 		chooser = new SendableChooser();
 		
 		
