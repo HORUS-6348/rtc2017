@@ -9,7 +9,7 @@ import org.usfirst.frc.team6348.robot.Robot;
 public class AutonomoCentral extends CommandGroup{
 
 	public AutonomoCentral() {
-		addSequential(new AutonomoCentral());
+		addSequential(new AutonomoLateral());
 	}
 	
 }

@@ -14,7 +14,7 @@ public class ManejoTeleoperado extends Command {
 	// Called just before this Command runs the first time
 		@Override
 		protected void initialize() {
-			SmartDashboard.putString("Comando: ", "AutonomoLateral");
+			SmartDashboard.putString("Comando: ", "ManejoTeleoperado");
 		}
 
 		// Called repeatedly when this Command is scheduled to run
