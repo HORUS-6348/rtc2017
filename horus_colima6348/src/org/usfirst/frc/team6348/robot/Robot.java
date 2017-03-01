@@ -26,7 +26,7 @@ public class Robot extends IterativeRobot {
 
 
 	Command autonomousCommand;
-	SendableChooser chooser;
+	SendableChooser<Command> chooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		trenMotriz = new TrenMotriz();
 		lanzador = new Lanzador();
-		chooser = new SendableChooser();
+		chooser = new SendableChooser<Command>();
 		
 		
 		chooser.addDefault("Autónomo carriles laterales", new AutonomoLateral());
