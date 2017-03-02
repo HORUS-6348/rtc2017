@@ -1,14 +1,14 @@
 package org.usfirst.frc.team6348.robot;
 
+import org.usfirst.frc.team6348.robot.commands.Lanzar;
+import org.usfirst.frc.team6348.robot.commands.ParoEmergencia;
+import org.usfirst.frc.team6348.robot.commands.ParoLanzar;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
-import org.usfirst.frc.team6348.robot.commands.Lanzar;
-import org.usfirst.frc.team6348.robot.commands.ParoEmergencia;
-import org.usfirst.frc.team6348.robot.commands.ParoLanzar;
 
 /**
  * This class is the glue that binds the controls on the physical operator

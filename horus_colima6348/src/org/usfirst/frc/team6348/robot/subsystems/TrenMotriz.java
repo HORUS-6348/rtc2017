@@ -7,6 +7,7 @@ import org.usfirst.frc.team6348.robot.commands.ManejoTeleoperado;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 
@@ -103,6 +104,21 @@ public class TrenMotriz extends Subsystem {
 	
 	public void stop(){
 		drive(0, 0);
+	}
+	
+	public void driveInDirection(double reference, double gyro, double gatillo){
+		double gyroAngle = -(gyro - reference);
+		double kP = 1.03 +  Math.abs(gyro) * .01;
+		
+		SmartDashboard.putNumber("Reference angle", reference);
+		SmartDashboard.putNumber("Gyro angle", gyro);
+		SmartDashboard.putNumber("kP", kP);
+		
+		if(gyroAngle > 0){
+			Robot.trenMotriz.drive(90 - kP, gatillo);
+		} else {
+			Robot.trenMotriz.drive(90 + kP , gatillo);
+		}
 	}
 	
 	public void drive(Joystick stick, boolean dpad){
