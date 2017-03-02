@@ -108,7 +108,7 @@ public class TrenMotriz extends Subsystem {
 	
 	public void driveInDirection(double reference, double gyro, double gatillo){
 		double gyroAngle = -(gyro - reference);
-		double kP = 5 +  Math.abs(gyro) * .01;
+		double kP = 5 +  Math.abs(gyro);
 		
 		SmartDashboard.putNumber("Reference angle", reference);
 		SmartDashboard.putNumber("Gyro angle", gyro);
