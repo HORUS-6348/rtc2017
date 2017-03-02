@@ -134,6 +134,9 @@ public class TrenMotriz extends Subsystem {
 		double potencia_izq = getMotorIzq(heading, gatillo);
 		double potencia_der = getMotorDer(heading, gatillo);
 		
+		SmartDashboard.putNumber("Motor izquierdo: ", potencia_izq);
+		SmartDashboard.putNumber("Motor derecho: ", potencia_der);
+		
 		motor_izq.set(potencia_izq);
 		motor_der.set(potencia_der);
 		
