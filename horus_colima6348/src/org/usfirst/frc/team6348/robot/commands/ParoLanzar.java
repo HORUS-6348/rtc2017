@@ -15,7 +15,6 @@ public class ParoLanzar extends Command {
 	
 	@Override
 	protected void initialize() {
-		SmartDashboard.putString("Comando: ", "ParoLanzar");
 		Robot.lanzador.pararMotor();
 
 	}

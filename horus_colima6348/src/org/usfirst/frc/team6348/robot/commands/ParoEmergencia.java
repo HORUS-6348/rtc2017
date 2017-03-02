@@ -15,7 +15,6 @@ public class ParoEmergencia extends Command {
 
 	@Override
 	protected void initialize() {
-		SmartDashboard.putString("Comando: ", "ParoEmergencia");
 	}
 
 	@Override

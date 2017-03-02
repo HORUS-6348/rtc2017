@@ -45,6 +45,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Autónomo carril central", new AutonomoCentral());
 		
 		SmartDashboard.putData("Autonomous mode chooser", chooser);
+		SmartDashboard.putData(Scheduler.getInstance());
+		SmartDashboard.putData(trenMotriz);
+		SmartDashboard.putData(lanzador);
 		
 		gyroCalibrate();
 	}
