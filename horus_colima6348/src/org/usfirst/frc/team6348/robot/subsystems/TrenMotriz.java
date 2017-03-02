@@ -25,7 +25,7 @@ public class TrenMotriz extends Subsystem {
 		double normalized = (max - degrees) / interval;
 		return 2*normalized - 1;
 	}
-	public double getMotorIzq(double degrees, double gatillo){
+	public  double getMotorIzq(double degrees, double gatillo){
 		if(degrees <= 90){
 			return 1 * gatillo;
 		} else if(degrees <= 180){
@@ -38,7 +38,7 @@ public class TrenMotriz extends Subsystem {
 			return 0;
 		}
 	}
-	public double getMotorDer(double degrees, double gatillo){
+	public  double getMotorDer(double degrees, double gatillo){
 		if(degrees <= 90){
 			return -smoothBetween(90, 0, degrees) * gatillo;
 		} else if(degrees <= 180){
@@ -108,16 +108,16 @@ public class TrenMotriz extends Subsystem {
 	
 	public void driveInDirection(double reference, double gyro, double gatillo){
 		double gyroAngle = -(gyro - reference);
-		double kP = 1.03 +  Math.abs(gyro) * .01;
+		double kP = 5 +  Math.abs(gyro) * .01;
 		
 		SmartDashboard.putNumber("Reference angle", reference);
 		SmartDashboard.putNumber("Gyro angle", gyro);
 		SmartDashboard.putNumber("kP", kP);
 		
 		if(gyroAngle > 0){
-			Robot.trenMotriz.drive(90 - kP, gatillo);
+			drive(90 - kP, gatillo);
 		} else {
-			Robot.trenMotriz.drive(90 + kP , gatillo);
+			drive(90 + kP , gatillo);
 		}
 	}
 	

@@ -1,6 +1,9 @@
 
 package org.usfirst.frc.team6348.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -26,6 +29,7 @@ public class Robot extends IterativeRobot {
 
 
 	Command autonomousCommand;
+	UsbCamera camera;
 	SendableChooser<Command> chooser;
 
 	/**
@@ -35,25 +39,31 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		oi = new OI();
 		trenMotriz = new TrenMotriz();
 		lanzador = new Lanzador();
+		oi = new OI();
 		chooser = new SendableChooser<Command>();
-		
 		
 		chooser.addDefault("Autónomo carriles laterales", new AutonomoLateral());
 		chooser.addObject("Autónomo carril central", new AutonomoCentral());
 		
-		SmartDashboard.putData("Autonomous mode chooser", chooser);
+		SmartDashboard.putData("chooserAutonomous mode chooser", chooser);
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(trenMotriz);
 		SmartDashboard.putData(lanzador);
 		
-		gyroCalibrate();
+		setupGyro();
+		setupCamera();
 	}
 
-	private void gyroCalibrate() {
+	private void setupGyro() {
 		oi.gyro.calibrate();
+	}
+	
+	private void setupCamera(){
+		camera = CameraServer.getInstance().startAutomaticCapture();
+		camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 480, 30);
+		
 	}
 
 	/**

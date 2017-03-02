@@ -7,8 +7,7 @@ import org.usfirst.frc.team6348.robot.Robot;
 
 
 
-public class AutonomoCentralLadear extends Command{
-	private boolean isDrivingLeft = false;
+public class AutonomoCentralLadear extends Command {
 	private Timer timer = new Timer();
 	private double fastCalibration;
 	
@@ -30,9 +29,9 @@ public class AutonomoCentralLadear extends Command{
 	@Override
 	protected void execute() {
 		if(timer.get() < 0.25){
-			Robot.trenMotriz.driveInDirection(135, fastCalibration, 0.3);
+			Robot.trenMotriz.driveInDirection(135, fastCalibration, 0.2);
 		} else if(timer.get() < 0.50){
-			Robot.trenMotriz.driveInDirection(45, fastCalibration, 0.3);
+			Robot.trenMotriz.driveInDirection(45, fastCalibration, 0.2);
 			
 		} else {
 			timer.reset();
