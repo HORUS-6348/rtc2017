@@ -19,14 +19,14 @@ public class AutonomoCentralInicial extends Command{
 	@Override
 	protected void initialize() {
 		fastCalibration = Robot.oi.gyro.getAngle();
-		setTimeout(3.5);
+		setTimeout(1.5);
 
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.trenMotriz.driveInDirection(fastCalibration, Robot.oi.gyro.getAngle(), 0.3);
+		Robot.trenMotriz.driveInDirection(fastCalibration, Robot.oi.gyro.getAngle(), 0.5);
 
 	}
 

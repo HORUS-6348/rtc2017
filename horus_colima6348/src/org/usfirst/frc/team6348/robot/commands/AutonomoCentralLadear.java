@@ -20,7 +20,7 @@ public class AutonomoCentralLadear extends Command {
 	@Override
 	protected void initialize() {
 		fastCalibration = -(Robot.oi.gyro.getAngle() - 90);
-		setTimeout(3.5);
+		setTimeout(2);
 		timer.start();
 
 	}
@@ -29,11 +29,12 @@ public class AutonomoCentralLadear extends Command {
 	@Override
 	protected void execute() {
 		if(timer.get() < 0.25){
-			Robot.trenMotriz.driveInDirection(135, fastCalibration, 0.2);
-		} else if(timer.get() < 0.50){
-			Robot.trenMotriz.driveInDirection(45, fastCalibration, 0.2);
-			
-		} else {
+			Robot.trenMotriz.driveInDirection(135, fastCalibration, 0.4);
+		} else if(timer.get() < 0.75){
+			Robot.trenMotriz.driveInDirection(45, fastCalibration, 0.4);
+		} else if(timer.get() < 1.00){
+			Robot.trenMotriz.driveInDirection(90, fastCalibration, 0.4);
+		} else{
 			timer.reset();
 		}
 		
