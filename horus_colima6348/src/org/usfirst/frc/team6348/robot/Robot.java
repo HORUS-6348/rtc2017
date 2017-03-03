@@ -47,7 +47,8 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Autónomo carriles laterales", new AutonomoLateral());
 		chooser.addObject("Autónomo carril central", new AutonomoCentral());
 		
-		SmartDashboard.putData("chooserAutonomous mode chooser", chooser);
+		SmartDashboard.putData("Autonomous mode chooser", chooser);
+		
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(trenMotriz);
 		SmartDashboard.putData(lanzador);
@@ -62,6 +63,7 @@ public class Robot extends IterativeRobot {
 	
 	private void setupCamera(){
 		camera = CameraServer.getInstance().startAutomaticCapture();
+		SmartDashboard.putString("Camera modes", camera.enumerateVideoModes().toString());
 		camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 480, 30);
 		
 	}
