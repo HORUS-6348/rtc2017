@@ -5,10 +5,13 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team6348.robot.commands.AutCentralAlt;
 import org.usfirst.frc.team6348.robot.commands.AutonomoCentral;
 import org.usfirst.frc.team6348.robot.commands.AutonomoLateral;
 import org.usfirst.frc.team6348.robot.subsystems.Lanzador;
@@ -30,7 +33,8 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	UsbCamera camera;
-	SendableChooser<Command> chooser;
+	SendableChooser choose;
+	Preferences prefs;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -42,16 +46,16 @@ public class Robot extends IterativeRobot {
 		trenMotriz = new TrenMotriz();
 		lanzador = new Lanzador();
 		oi = new OI();
-		chooser = new SendableChooser<Command>();
+		choose = new SendableChooser();
+		prefs = Preferences.getInstance();
 		
-		chooser.addDefault("Autónomo carriles laterales", new AutonomoLateral());
-		chooser.addObject("Autónomo carril central", new AutonomoCentral());
-		
-		SmartDashboard.putData("Autonomous mode chooser", chooser);
+		choose.addDefault("Autónomo carril central", new AutCentralAlt());
+		choose.addObject("Autónomo carriles laterales", new AutonomoLateral());
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(trenMotriz);
 		SmartDashboard.putData(lanzador);
+		SmartDashboard.putData("Auto", choose);
 		
 		setupGyro();
 		setupCamera();
@@ -63,8 +67,7 @@ public class Robot extends IterativeRobot {
 	
 	private void setupCamera(){
 		camera = CameraServer.getInstance().startAutomaticCapture();
-		SmartDashboard.putString("Camera modes", camera.enumerateVideoModes().toString());
-		camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 480, 30);
+		camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 320, 240, 24);
 		
 	}
 
@@ -96,9 +99,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = (Command) chooser.getSelected();
+		autonomousCommand = (Command) choose.getSelected();
 		autonomousCommand.start();
-			
 	}
 	
 

@@ -188,11 +188,11 @@ public class TrenMotriz extends Subsystem {
 		boolean stateY = stick.getRawButton(4);
 
 		if(stateA){
-			gatillo = 0.25;
+			gatillo = 0.40;
 		} else if(stateX){
-			gatillo = 0.5;
+			gatillo = 0.60;
 		} else if(stateY){
-			gatillo = 0.75;
+			gatillo = 0.80;
 		}
 		
 		return gatillo;
