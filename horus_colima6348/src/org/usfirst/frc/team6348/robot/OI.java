@@ -1,8 +1,6 @@
 package org.usfirst.frc.team6348.robot;
 
-import org.usfirst.frc.team6348.robot.commands.Lanzar;
 import org.usfirst.frc.team6348.robot.commands.ParoEmergencia;
-import org.usfirst.frc.team6348.robot.commands.ParoLanzar;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
@@ -19,15 +17,13 @@ public class OI {
 	public Joystick stick1 = new Joystick(1); //Joystick Logitech
 	
 	public Button B = new JoystickButton(stick0, 2); //Botón B para paro de emergencia
-	public Button lanzadorTrigger = new JoystickButton(stick1, 1);
 	
 	public ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
 	
 	public OI(){
 		B.whenPressed(new ParoEmergencia());
-		lanzadorTrigger.whenPressed(new Lanzar());
-		lanzadorTrigger.whenReleased(new ParoLanzar());
+
 	}
 	
 	

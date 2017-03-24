@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6348.robot.commands.AutCentralAlt;
 import org.usfirst.frc.team6348.robot.commands.AutonomoCentral;
 import org.usfirst.frc.team6348.robot.commands.AutonomoLateral;
-import org.usfirst.frc.team6348.robot.subsystems.Lanzador;
+import org.usfirst.frc.team6348.robot.subsystems.Escalador;
 import org.usfirst.frc.team6348.robot.subsystems.TrenMotriz;
 
 /**
@@ -27,7 +27,7 @@ import org.usfirst.frc.team6348.robot.subsystems.TrenMotriz;
 public class Robot extends IterativeRobot {
 
 	public static TrenMotriz trenMotriz;
-	public static Lanzador lanzador;
+	public static Escalador escalador;
 	public static OI oi;
 
 
@@ -44,17 +44,15 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		RobotMap.init();
 		trenMotriz = new TrenMotriz();
-		lanzador = new Lanzador();
+		escalador = new Escalador();
 		oi = new OI();
 		choose = new SendableChooser();
-		prefs = Preferences.getInstance();
-		
+
 		choose.addDefault("Autónomo carril central", new AutCentralAlt());
 		choose.addObject("Autónomo carriles laterales", new AutonomoLateral());
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(trenMotriz);
-		SmartDashboard.putData(lanzador);
 		SmartDashboard.putData("Auto", choose);
 		
 		setupGyro();
@@ -67,7 +65,7 @@ public class Robot extends IterativeRobot {
 	
 	private void setupCamera(){
 		camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 320, 240, 24);
+		camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 360, 24);
 		
 	}
 
