@@ -20,7 +20,7 @@ public class TrenMotriz extends Subsystem {
 	 * min ->  1
 	 * max -> -1
 	 * */
-	private double smoothBetween(double min, double max, double degrees){
+	public double smoothBetween(double min, double max, double degrees){
 		double interval = max - min;
 		double normalized = (max - degrees) / interval;
 		return 2*normalized - 1;

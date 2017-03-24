@@ -21,6 +21,7 @@ public class OI {
 	public ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	
 	
+	
 	public OI(){
 		B.whenPressed(new ParoEmergencia());
 
