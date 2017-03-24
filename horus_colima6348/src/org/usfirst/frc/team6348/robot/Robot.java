@@ -53,6 +53,7 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(trenMotriz);
+		SmartDashboard.putData(escalador);
 		SmartDashboard.putData("Auto", choose);
 		
 		setupGyro();
