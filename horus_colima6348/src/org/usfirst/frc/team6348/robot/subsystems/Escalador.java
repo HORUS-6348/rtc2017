@@ -15,6 +15,11 @@ public class Escalador extends Subsystem {
 	public void escalar(double potencia){
 		RobotMap.escalador.set(potencia);
 	}
+
+	public void stop() {
+		RobotMap.escalador.set(0);
+		
+	}
 	
 
 }

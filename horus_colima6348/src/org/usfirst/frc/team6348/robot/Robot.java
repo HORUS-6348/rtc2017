@@ -78,6 +78,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		trenMotriz.stop();
+		escalador.stop();
 	}
 
 	@Override
