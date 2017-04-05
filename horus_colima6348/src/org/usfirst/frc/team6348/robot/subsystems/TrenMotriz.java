@@ -4,8 +4,10 @@ import org.usfirst.frc.team6348.robot.Robot;
 import org.usfirst.frc.team6348.robot.RobotMap;
 import org.usfirst.frc.team6348.robot.commands.ManejoTeleoperado;
 
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -13,8 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TrenMotriz extends Subsystem {
 
-	Spark motor_izq = RobotMap.motor_izq;
-	Spark motor_der = RobotMap.motor_der;
+	Jaguar motor_izq = RobotMap.motor_izq;
+	VictorSP motor_der = RobotMap.motor_der;
 	
 	/*
 	 * min ->  1
@@ -129,6 +131,11 @@ public class TrenMotriz extends Subsystem {
 		}
 		
 	}
+	
+	public void set_motors(double potencia_izq, double potencia_der){
+		motor_izq.set(potencia_izq);
+		motor_der.set(potencia_der);
+	}
 		
 	public void drive(double heading, double gatillo){
 		double potencia_izq = getMotorIzq(heading, gatillo);
@@ -137,8 +144,7 @@ public class TrenMotriz extends Subsystem {
 		SmartDashboard.putNumber("Motor izquierdo: ", potencia_izq);
 		SmartDashboard.putNumber("Motor derecho: ", potencia_der);
 		
-		motor_izq.set(potencia_izq);
-		motor_der.set(potencia_der);
+		set_motors(potencia_izq, potencia_der);
 		
 	}
 	
@@ -149,8 +155,7 @@ public class TrenMotriz extends Subsystem {
 		double potencia_izq = getMotorIzqDpad(dPad, gatillo);
 		double potencia_der = getMotorDerDpad(dPad, gatillo);
 		
-		motor_izq.set(potencia_izq);
-		motor_der.set(potencia_der);
+		set_motors(potencia_izq, potencia_der);
 		
 	}
 	

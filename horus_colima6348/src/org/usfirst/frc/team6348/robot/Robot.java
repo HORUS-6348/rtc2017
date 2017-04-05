@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team6348.robot.commands.AutCentralAlt;
 import org.usfirst.frc.team6348.robot.commands.AutonomoCentral;
-import org.usfirst.frc.team6348.robot.commands.AutonomoLateral;
+import org.usfirst.frc.team6348.robot.commands.AutonomoCentral;
+import org.usfirst.frc.team6348.robot.commands.AutonomoLateralLinea;
 import org.usfirst.frc.team6348.robot.subsystems.Escalador;
 import org.usfirst.frc.team6348.robot.subsystems.TrenMotriz;
 
@@ -48,8 +48,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		choose = new SendableChooser();
 
-		choose.addDefault("Autónomo carril central", new AutCentralAlt());
-		choose.addObject("Autónomo carriles laterales", new AutonomoLateral());
+		choose.addDefault("Autónomo carril central", new AutonomoCentral());
+		choose.addObject("Autónomo carriles laterales", new AutonomoLateralLinea());
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(trenMotriz);
