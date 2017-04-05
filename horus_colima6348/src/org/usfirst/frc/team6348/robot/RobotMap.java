@@ -1,6 +1,8 @@
 package org.usfirst.frc.team6348.robot;
 
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.VictorSP;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -10,15 +12,15 @@ import edu.wpi.first.wpilibj.Spark;
  */
 public class RobotMap {
 	//Estos Spark son los cuatro motores del tren motriz
-	public static Spark motor_izq;
-	public static Spark motor_der;
-	public static Spark escalador;
+	public static Jaguar motor_izq;
+	public static VictorSP motor_der;
+	public static VictorSP escalador;
 	
 	public static void init(){
 		//Inicializamos los controladores
-		motor_izq = new Spark(0);
-		motor_der = new Spark(1);
-		escalador  = new Spark(2);
+		motor_izq = new Jaguar(0);
+		motor_der = new VictorSP(1);
+		escalador  = new VictorSP(2);
 	}
 	
 }
