@@ -72,10 +72,6 @@ public class Robot extends IterativeRobot {
 		escalador.stop();
 	}
 
-	@Override
-	public void disabledPeriodic() {
-		
-	}
 
 	@Override
 	public void autonomousInit() {
@@ -105,8 +101,4 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 	}
 
-	@Override
-	public void testPeriodic() {
-
-	}
 }
