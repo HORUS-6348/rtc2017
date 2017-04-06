@@ -19,8 +19,7 @@ public class OI {
 	public Button B = new JoystickButton(stick0, 2); //Botón B para paro de emergencia
 	
 	public ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
-	
-	
+
 	
 	public OI(){
 		B.whenPressed(new ParoEmergencia());

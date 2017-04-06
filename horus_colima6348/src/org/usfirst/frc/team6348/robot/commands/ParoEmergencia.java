@@ -11,6 +11,7 @@ import org.usfirst.frc.team6348.robot.Robot;
 public class ParoEmergencia extends Command {
 	public ParoEmergencia() {
 		requires(Robot.trenMotriz);
+		requires(Robot.escalador);
 	}
 
 	@Override
@@ -20,6 +21,7 @@ public class ParoEmergencia extends Command {
 	@Override
 	protected void execute() {
 		Robot.trenMotriz.stop();
+		Robot.escalador.stop();
 	}
 
 	@Override
