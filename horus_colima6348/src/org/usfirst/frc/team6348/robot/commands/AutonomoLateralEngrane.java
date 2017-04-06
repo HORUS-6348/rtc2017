@@ -20,6 +20,8 @@ public class AutonomoLateralEngrane extends Command {
 	protected void initialize() {
 		fastCalibration = Robot.oi.gyro.getAngle();
 		timer = new Timer();
+		timer.reset();
+		timer.start();
 		setTimeout(15);
 	}
 
