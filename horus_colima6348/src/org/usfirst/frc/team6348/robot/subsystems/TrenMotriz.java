@@ -6,6 +6,7 @@ import org.usfirst.frc.team6348.robot.commands.ManejoTeleoperado;
 
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,8 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TrenMotriz extends Subsystem {
 
-	Jaguar motor_izq = RobotMap.motor_izq;
-	VictorSP motor_der = RobotMap.motor_der;
+	PWMSpeedController motor_izq = RobotMap.motor_izq;
+	PWMSpeedController motor_der = RobotMap.motor_der;
 	
 	/*
 	 * min ->  1
@@ -133,6 +134,9 @@ public class TrenMotriz extends Subsystem {
 	}
 	
 	public void set_motors(double potencia_izq, double potencia_der){
+		SmartDashboard.putNumber("Motor izquierdo: ", potencia_izq);
+		SmartDashboard.putNumber("Motor derecho: ", potencia_der);
+		
 		motor_izq.set(potencia_izq);
 		motor_der.set(potencia_der);
 	}
@@ -140,9 +144,6 @@ public class TrenMotriz extends Subsystem {
 	public void drive(double heading, double gatillo){
 		double potencia_izq = getMotorIzq(heading, gatillo);
 		double potencia_der = getMotorDer(heading, gatillo);
-		
-		SmartDashboard.putNumber("Motor izquierdo: ", potencia_izq);
-		SmartDashboard.putNumber("Motor derecho: ", potencia_der);
 		
 		set_motors(potencia_izq, potencia_der);
 		
