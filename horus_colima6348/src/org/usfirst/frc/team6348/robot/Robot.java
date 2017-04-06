@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team6348.robot.commands.AutonomoCentral;
+import org.usfirst.frc.team6348.robot.commands.AutonomoLateralEngrane;
 import org.usfirst.frc.team6348.robot.commands.AutonomoCentral;
 import org.usfirst.frc.team6348.robot.commands.AutonomoLateralLinea;
 import org.usfirst.frc.team6348.robot.subsystems.Escalador;
