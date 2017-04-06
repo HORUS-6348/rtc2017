@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.VictorSP;
  * floating around.
  */
 public class RobotMap {
-	//Estos Spark son los cuatro motores del tren motriz
+	//Estos controladores pertenecen al tren motriz
 	public static PWMSpeedController motor_izq;
 	public static PWMSpeedController motor_der;
 	public static PWMSpeedController escalador;
