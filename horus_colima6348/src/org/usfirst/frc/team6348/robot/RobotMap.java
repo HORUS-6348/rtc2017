@@ -1,6 +1,7 @@
 package org.usfirst.frc.team6348.robot;
 
 import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.PWMSpeedController;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -12,9 +13,9 @@ import edu.wpi.first.wpilibj.VictorSP;
  */
 public class RobotMap {
 	//Estos Spark son los cuatro motores del tren motriz
-	public static Jaguar motor_izq;
-	public static VictorSP motor_der;
-	public static VictorSP escalador;
+	public static PWMSpeedController motor_izq;
+	public static PWMSpeedController motor_der;
+	public static PWMSpeedController escalador;
 	
 	public static void init(){
 		//Inicializamos los controladores
