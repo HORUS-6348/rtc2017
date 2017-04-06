@@ -50,6 +50,7 @@ public class Robot extends IterativeRobot {
 
 		choose.addDefault("Autónomo carril central", new AutonomoCentral());
 		choose.addObject("Autónomo carriles laterales", new AutonomoLateralLinea());
+		choose.addObject("Autónomo carriles lateral con engrane", new AutonomoLateralEngrane());
 		
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(trenMotriz);
