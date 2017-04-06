@@ -34,8 +34,7 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	UsbCamera camera;
-	SendableChooser choose;
-	Preferences prefs;
+	SendableChooser<Command> choose;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -47,7 +46,7 @@ public class Robot extends IterativeRobot {
 		trenMotriz = new TrenMotriz();
 		escalador = new Escalador();
 		oi = new OI();
-		choose = new SendableChooser();
+		choose = new SendableChooser<Command>();
 
 		choose.addDefault("Autónomo carril central", new AutonomoCentral());
 		choose.addObject("Autónomo carriles laterales", new AutonomoLateralLinea());
@@ -59,16 +58,16 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto", choose);
 		
 		setupGyro();
-		setupCamera();
+		setupCamera(640, 480, 24);
 	}
 
 	private void setupGyro() {
 		oi.gyro.calibrate();
 	}
 	
-	private void setupCamera(){
+	private void setupCamera(int width, int height, int fps){
 		camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, 640, 360, 24);
+		camera.setVideoMode(VideoMode.PixelFormat.kMJPEG, width, height, fps);
 		
 	}
 
