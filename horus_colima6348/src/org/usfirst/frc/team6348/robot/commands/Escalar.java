@@ -21,7 +21,7 @@ public class Escalar extends Command {
 		@Override
 		protected void execute() {
 			double rawAxis = Robot.oi.stick1.getRawAxis(3);
-			double potencia = Robot.trenMotriz.smoothBetween(-1, 1, rawAxis);
+			double potencia = Robot.trenMotriz.smoothBetween(-1, 3, rawAxis);
 			
 			Robot.escalador.escalar(potencia);
 		}
