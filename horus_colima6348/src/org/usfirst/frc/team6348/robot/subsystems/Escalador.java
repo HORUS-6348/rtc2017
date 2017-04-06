@@ -4,6 +4,7 @@ import org.usfirst.frc.team6348.robot.RobotMap;
 import org.usfirst.frc.team6348.robot.commands.Escalar;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Escalador extends Subsystem {
 
@@ -13,6 +14,8 @@ public class Escalador extends Subsystem {
 	}
 	
 	public void escalar(double potencia){
+		SmartDashboard.putNumber("Motor escalador: ", potencia);
+		
 		RobotMap.escalador.set(potencia);
 	}
 
