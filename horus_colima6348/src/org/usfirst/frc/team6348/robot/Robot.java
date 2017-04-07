@@ -121,7 +121,7 @@ public class Robot extends IterativeRobot {
 
 	private void updateNetworkTables() {
 		data.putNumber("power/batteryVoltage", pdp.getVoltage());
-		data.putNumber("power/totalPowerUse", pdp.getTotalPower());
+		data.putNumber("power/totalCurrent", pdp.getTotalCurrent());
 		data.putNumber("power/left", pdp.getCurrent(14));
 		data.putNumber("power/right", pdp.getCurrent(15));
 		data.putNumber("power/climber", pdp.getCurrent(2));
