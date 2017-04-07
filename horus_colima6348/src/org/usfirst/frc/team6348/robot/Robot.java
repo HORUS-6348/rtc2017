@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -35,7 +36,6 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	UsbCamera camera;
-	SendableChooser<Command> choose;
 
 
 	@Override
@@ -46,17 +46,7 @@ public class Robot extends IterativeRobot {
 		escalador      = new Escalador();
 		iluminadorLED  = new IluminadorLED();
 		oi             = new OI();
-		choose         = new SendableChooser<Command>();
 
-		choose.addObject("Autónomo carril central", new AutonomoCentral());
-		choose.addObject("Autónomo carriles laterales", new AutonomoLateralLinea());
-		choose.addDefault("Autónomo carril lateral izquierdo con engrane", new AutonomoLateralEngrane());
-		
-		SmartDashboard.putData(Scheduler.getInstance());
-		SmartDashboard.putData(trenMotriz);
-		SmartDashboard.putData(escalador);
-		SmartDashboard.putData("Auto", choose);
-		
 		setupGyro();
 		setupCamera(640, 480, 24);
 	}
@@ -81,8 +71,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = (Command) choose.getSelected();
-		autonomousCommand.start();
+
 	}
 	
 	@Override
@@ -105,6 +94,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+	}
+	
+	@Override
+	public void robotPeriodic() {
+		System.out.println("oie cy");
 	}
 
 }
