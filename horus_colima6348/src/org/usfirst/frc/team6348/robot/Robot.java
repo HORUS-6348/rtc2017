@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,6 +17,7 @@ import org.usfirst.frc.team6348.robot.commands.AutonomoLateralEngrane;
 import org.usfirst.frc.team6348.robot.commands.AutonomoCentral;
 import org.usfirst.frc.team6348.robot.commands.AutonomoLateralLinea;
 import org.usfirst.frc.team6348.robot.subsystems.Escalador;
+import org.usfirst.frc.team6348.robot.subsystems.IluminadorLED;
 import org.usfirst.frc.team6348.robot.subsystems.TrenMotriz;
 
 /**
@@ -29,6 +31,7 @@ public class Robot extends IterativeRobot {
 	public static TrenMotriz trenMotriz;
 	public static Escalador escalador;
 	public static OI oi;
+	public static IluminadorLED iluminadorLED;
 
 	Command autonomousCommand;
 	UsbCamera camera;
@@ -38,10 +41,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		RobotMap.init();
-		trenMotriz = new TrenMotriz();
-		escalador = new Escalador();
-		oi = new OI();
-		choose = new SendableChooser<Command>();
+		
+		trenMotriz     = new TrenMotriz();
+		escalador      = new Escalador();
+		iluminadorLED  = new IluminadorLED();
+		oi             = new OI();
+		choose         = new SendableChooser<Command>();
 
 		choose.addDefault("Autónomo carril central", new AutonomoCentral());
 		choose.addObject("Autónomo carriles laterales", new AutonomoLateralLinea());
@@ -70,6 +75,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		trenMotriz.stop();
 		escalador.stop();
+		iluminadorLED.stop();
 	}
 
 
