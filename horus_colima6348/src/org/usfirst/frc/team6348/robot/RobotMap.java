@@ -15,7 +15,7 @@ public class RobotMap {
 	//Estos controladores pertenecen al tren motriz
 	public static PWMSpeedController motor_izq;
 	public static PWMSpeedController motor_der;
-	public static PWMSpeedController escalador;
+	public static PWMSpeedController escalador; //El subecuerdas, pues
 	
 	public static void init(){
 		//Inicializamos los controladores
