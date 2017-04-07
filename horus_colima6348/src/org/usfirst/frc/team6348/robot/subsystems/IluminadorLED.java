@@ -20,17 +20,6 @@ public class IluminadorLED extends Subsystem {
 		SmartDashboard.putString("Color: ", String.format("RGB: (%d, %d, %d)", r, g, b));
 	}
 	
-	public void iluminar(boolean azul){
-		if(azul){
-			SmartDashboard.putString("Color: ", "(0, 0, 255)");
-			RobotMap.spike.set(Relay.Value.kForward);
-			System.out.println("SPIKE: " + RobotMap.spike.get());
-		} else{
-			SmartDashboard.putString("Color: ", "(255, 0, 0)");
-			RobotMap.spike.set(Relay.Value.kReverse);
-			System.out.println("SPIKE: " + RobotMap.spike.get());
-		}
-	}
 
 	public void stop() {
 		iluminar(0, 0, 0);		

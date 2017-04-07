@@ -2,7 +2,6 @@ package org.usfirst.frc.team6348.robot;
 
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.PWMSpeedController;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -17,14 +16,12 @@ public class RobotMap {
 	public static PWMSpeedController motor_izq;
 	public static PWMSpeedController motor_der;
 	public static PWMSpeedController escalador;
-	public static Relay              spike;
 	
 	public static void init(){
 		//Inicializamos los controladores
 		motor_izq = new Jaguar(0); // new Spark(0);
 		motor_der = new VictorSP(1); // new Spark(1);
 		escalador = new VictorSP(2); // new Spark(2);
-		spike     = new Relay(3);
 	}
 	
 }

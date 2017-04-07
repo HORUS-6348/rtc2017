@@ -40,9 +40,9 @@ public class CambiarColor extends Command {
 
 		private void iluminarAlianza(Alliance currentAlliance) {
 			if(currentAlliance == DriverStation.Alliance.Blue){
-				Robot.iluminadorLED.iluminar(true);
+				Robot.iluminadorLED.iluminar(0, 0, 255);
 			} else {
-				Robot.iluminadorLED.iluminar(false);
+				Robot.iluminadorLED.iluminar(255, 0, 0);
 			}
 			
 		}
