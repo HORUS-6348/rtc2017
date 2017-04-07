@@ -4,7 +4,9 @@ package org.usfirst.frc.team6348.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -18,7 +20,6 @@ import org.usfirst.frc.team6348.robot.commands.AutonomoLateralEngrane;
 import org.usfirst.frc.team6348.robot.commands.AutonomoCentral;
 import org.usfirst.frc.team6348.robot.commands.AutonomoLateralLinea;
 import org.usfirst.frc.team6348.robot.subsystems.Escalador;
-import org.usfirst.frc.team6348.robot.subsystems.IluminadorLED;
 import org.usfirst.frc.team6348.robot.subsystems.TrenMotriz;
 
 /**
@@ -32,10 +33,12 @@ public class Robot extends IterativeRobot {
 	public static TrenMotriz trenMotriz;
 	public static Escalador escalador;
 	public static OI oi;
-	public static IluminadorLED iluminadorLED;
-
+	
+	PowerDistributionPanel pdp;
 	Command autonomousCommand;
 	UsbCamera camera;
+	
+	NetworkTable data;
 
 
 	@Override
@@ -44,8 +47,9 @@ public class Robot extends IterativeRobot {
 		
 		trenMotriz     = new TrenMotriz();
 		escalador      = new Escalador();
-		iluminadorLED  = new IluminadorLED();
+		pdp            = new PowerDistributionPanel();
 		oi             = new OI();
+		
 
 		setupGyro();
 		setupCamera(640, 480, 24);
@@ -65,12 +69,25 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		trenMotriz.stop();
 		escalador.stop();
-		iluminadorLED.stop();
 	}
 
 
 	@Override
 	public void autonomousInit() {
+		String autoMode = data.getString("autoMode/selectedMode", "forward");
+		
+		switch(autoMode){
+			case "forward": autonomousCommand = new AutonomoLateralLinea();
+							break;
+			case "left"   : autonomousCommand = new AutonomoLateralEngrane();
+							break;
+			case "center" : autonomousCommand = new AutonomoCentral();
+							break;
+			default		  : autonomousCommand = new AutonomoLateralLinea();
+							break;
+		}
+		
+		autonomousCommand.start();
 
 	}
 	
@@ -98,7 +115,38 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void robotPeriodic() {
-		System.out.println("oie cy");
+		updateNetworkTables();
+	}
+
+	private void updateNetworkTables() {
+		data.putNumber("power/batteryVoltage", pdp.getVoltage());
+		data.putNumber("power/totalPowerUse", pdp.getTotalPower());
+		data.putNumber("power/left", pdp.getCurrent(14));
+		data.putNumber("power/right", pdp.getCurrent(15));
+		data.putNumber("power/climber", pdp.getCurrent(2));
+		data.putNumber("power/VRM", pdp.getCurrent(9));
+		
+		data.putNumber("match/time", DriverStation.getInstance().getMatchTime());
+		data.putString("match/phase", getMatchPhase());
+		
+		data.putNumber("sensors/gyroAngle", Robot.oi.gyro.getAngle());
+		
+		
+	}
+
+	private String getMatchPhase() {
+		double matchTime = DriverStation.getInstance().getMatchTime();
+		boolean auto     = DriverStation.getInstance().isAutonomous();
+		
+		if(auto){
+			return "auto";
+		} else{
+			if(matchTime < 95 || matchTime > 110){
+				return "climb";
+			} else{
+				return "teleop";
+			}
+		}
 	}
 
 }
