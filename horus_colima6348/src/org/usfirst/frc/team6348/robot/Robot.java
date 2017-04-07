@@ -142,7 +142,7 @@ public class Robot extends IterativeRobot {
 		if(auto){
 			return "auto";
 		} else{
-			if(matchTime < 95 || matchTime > 110){
+			if(matchTime > 25 && matchTime < 40){
 				return "climb";
 			} else{
 				return "teleop";
