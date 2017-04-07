@@ -19,8 +19,8 @@ public class RobotMap {
 	
 	public static void init(){
 		//Inicializamos los controladores
-		motor_izq = new Jaguar(0); // new Spark(0);
-		motor_der = new VictorSP(1); // new Spark(1);
+		motor_izq = new VictorSP(0); // new Spark(0);
+		motor_der = new Jaguar(1); // new Spark(1);
 		escalador = new VictorSP(2); // new Spark(2);
 	}
 	
