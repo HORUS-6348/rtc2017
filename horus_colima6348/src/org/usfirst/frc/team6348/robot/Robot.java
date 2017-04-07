@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	UsbCamera camera;
 	
-	NetworkTable data;
+	public static NetworkTable data;
 
 
 	@Override

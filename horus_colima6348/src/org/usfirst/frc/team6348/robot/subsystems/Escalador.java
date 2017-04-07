@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6348.robot.subsystems;
 
+import org.usfirst.frc.team6348.robot.Robot;
 import org.usfirst.frc.team6348.robot.RobotMap;
 import org.usfirst.frc.team6348.robot.commands.Escalar;
 
@@ -14,7 +15,7 @@ public class Escalador extends Subsystem {
 	}
 	
 	public void escalar(double potencia){
-		SmartDashboard.putNumber("Motor escalador: ", potencia);
+		Robot.data.putNumber("motors/climber", potencia);
 		
 		RobotMap.escalador.set(potencia);
 	}
