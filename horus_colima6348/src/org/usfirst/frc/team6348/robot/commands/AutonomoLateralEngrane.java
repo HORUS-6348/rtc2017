@@ -32,6 +32,7 @@ public class AutonomoLateralEngrane extends Command {
 			Robot.trenMotriz.driveInDirection(fastCalibration, Robot.oi.gyro.getAngle(), 0.6);
 		} else if(timer.get() < 5|| !turnComplete){
 			Robot.trenMotriz.set_motors(0.4, 0);
+			turnComplete = true;
 			if(Robot.oi.gyro.getAngle() > 45){
 				Robot.trenMotriz.stop();
 				turnComplete = true;
