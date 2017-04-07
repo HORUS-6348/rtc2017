@@ -47,6 +47,7 @@ public class Robot extends IterativeRobot {
 		
 		trenMotriz     = new TrenMotriz();
 		escalador      = new Escalador();
+		data           = NetworkTable.getTable("data");
 		pdp            = new PowerDistributionPanel();
 		oi             = new OI();
 		
