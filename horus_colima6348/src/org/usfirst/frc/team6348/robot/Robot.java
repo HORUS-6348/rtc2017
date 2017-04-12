@@ -129,12 +129,22 @@ public class Robot extends IterativeRobot {
 		data.putNumber("power/climber", pdp.getCurrent(2));
 		data.putNumber("power/VRM", pdp.getCurrent(9));
 		
-		data.putNumber("match/time", DriverStation.getInstance().getMatchTime());
+		data.putNumber("match/time", getMatchTime());
 		data.putString("match/phase", getMatchPhase());
 		
 		data.putNumber("sensors/gyroAngle", Robot.oi.gyro.getAngle());
 		
 		
+	}
+
+	private double getMatchTime() {
+		double matchTime = DriverStation.getInstance().getMatchTime();
+		
+		if(matchTime == -1){
+			return 0;
+		} else{
+			return matchTime;
+		}
 	}
 
 	private String getMatchPhase() {
