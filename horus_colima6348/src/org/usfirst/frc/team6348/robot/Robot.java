@@ -137,13 +137,13 @@ public class Robot extends IterativeRobot {
 		
 	}
 
-	private double getMatchTime() {
+	private int getMatchTime() {
 		double matchTime = DriverStation.getInstance().getMatchTime();
 		
 		if(matchTime == -1){
 			return 0;
 		} else{
-			return matchTime;
+			return (int) matchTime;
 		}
 	}
 
