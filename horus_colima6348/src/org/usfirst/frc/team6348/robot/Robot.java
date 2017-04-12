@@ -75,6 +75,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
+		RobotMap.jc.update(data);
 		String autoMode = data.getString("autoMode/selectedMode", "forward");
 		
 		switch(autoMode){
@@ -100,6 +101,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		RobotMap.jc.update(data);
 		if (autonomousCommand != null){
 			autonomousCommand.cancel();
 		}

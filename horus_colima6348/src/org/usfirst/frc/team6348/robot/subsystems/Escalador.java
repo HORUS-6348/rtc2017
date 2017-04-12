@@ -16,7 +16,6 @@ public class Escalador extends Subsystem {
 	
 	public void escalar(double potencia){
 		Robot.data.putNumber("motors/climber", potencia);
-		
 		RobotMap.escalador.set(potencia);
 	}
 

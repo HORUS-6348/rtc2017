@@ -187,18 +187,18 @@ public class TrenMotriz extends Subsystem {
 		double gatillo = stick.getRawAxis(3);
 		double otroGatillo = stick.getRawAxis(2);
 		
-		gatillo = (gatillo * 0.5) + (otroGatillo * 0.5); 
+		gatillo = (gatillo * RobotMap.jc.rt) + (otroGatillo * RobotMap.jc.lt); 
 		
 		boolean stateA = stick.getRawButton(1);
 		boolean stateX = stick.getRawButton(3);
 		boolean stateY = stick.getRawButton(4);
 
 		if(stateA){
-			gatillo = 0.40;
+			gatillo = RobotMap.jc.a;
 		} else if(stateX){
-			gatillo = 0.60;
+			gatillo = RobotMap.jc.x;
 		} else if(stateY){
-			gatillo = 0.80;
+			gatillo = RobotMap.jc.y;
 		}
 		
 		return gatillo;
